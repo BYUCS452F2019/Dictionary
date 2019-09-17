@@ -17,12 +17,19 @@ I would think MySQL would be a good one to use.
 ## No-SQL
 
 I would guess that key-value pairs would be the best No-SQL but open for discussion
-Business
+
+## Business
+
 We want as many users to participate as possible to create the best possible dictionary.  Therefore, it will be free to use on a consumer level.  There will be some charge for companies to integrate into their products.
-Legal
+
+## Legal
+
 The business will be a Utah LLC.
-Technical
+
+## Technical
+
 Our priorities will be:
+
 1.	Choose the languages we are going to include initially
 2.	Choose an initial SQL database for a prototype
 3.	Choose necessary programming languages
