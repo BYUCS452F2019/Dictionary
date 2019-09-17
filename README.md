@@ -1,4 +1,4 @@
-# Dictionary
+# Dictionary (pitch)
 
 Create a Multilingual Dictionary
 
