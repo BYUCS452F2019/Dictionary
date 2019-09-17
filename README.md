@@ -1,12 +1,21 @@
 # Dictionary
+
 Create a Multilingual Dictionary
-Project description
+
+## Project description
+
 We will create a multilingual dictionary where users can add word translations to a dictionary and thereby create an open source multilingual dictionary.
-Team
+
+## Team
+
 I think 1-2 others would be good. So, a team of 2-3 people.
-SQL
+
+## SQL
+
 I would think MySQL would be a good one to use.
-No-SQL
+
+## No-SQL
+
 I would guess that key-value pairs would be the best No-SQL but open for discussion
 Business
 We want as many users to participate as possible to create the best possible dictionary.  Therefore, it will be free to use on a consumer level.  There will be some charge for companies to integrate into their products.
