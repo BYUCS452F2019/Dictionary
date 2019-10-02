@@ -7,15 +7,16 @@ module.exports = {
       var client = new pg.Client(connectionString);
       client.connect(pgConnectCallback);
 
-      client.query('SELECT ''Hello World from PostgreSQL''', (error, result) => {
+      client.query('SELECT \'Hello World from PostgreSQL\'', (error, result) => {
          if (error) {
             console.log("Error in query: ");
             console.log(error);
-	 }
+            res.json({"result":"error"})
+	      }
          else {
-	    res.json(result.rows);
-	 }
-      }
+	         res.json(result.rows);
+	      }
+      });
    }
 }
 
