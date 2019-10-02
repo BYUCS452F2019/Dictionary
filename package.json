@@ -1,0 +1,25 @@
+{
+  "name": "dictionary",
+  "version": "1.0.0",
+  "description": "A multilingual dictionary for CS452",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BYUCS452F2019/Dictionary.git"
+  },
+  "keywords": [
+    "dictionary"
+  ],
+  "author": "Eric Burdett, Jonathan Skaggs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BYUCS452F2019/Dictionary/issues"
+  },
+  "homepage": "https://github.com/BYUCS452F2019/Dictionary#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
