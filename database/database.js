@@ -27,3 +27,4 @@ function pgConnectCallback(error) {
    else {
       console.log("Successfully connected to postgres");
    }
+}
