@@ -30,7 +30,7 @@ CREATE TABLE Word
 
 CREATE TABLE Related_Word
 (
-    related_words_id SERIAL CONSTRAINT related_word_pk PRIMARY KEY,
+    related_word_id SERIAL CONSTRAINT related_word_pk PRIMARY KEY,
     from_word INT CONSTRAINT related_word_nn1 NOT NULL,
     to_word INT CONSTRAINT related_word_nn2 NOT NULL,
     last_edit_id INT CONSTRAINT related_word_nn3 NOT NULL,
