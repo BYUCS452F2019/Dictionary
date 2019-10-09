@@ -1,4 +1,4 @@
-DROP TABLE Related_Words;
+DROP TABLE Related_Word;
 DROP TABLE Word;
 DROP TABLE Editor;
 DROP TABLE Language;
@@ -28,13 +28,13 @@ CREATE TABLE Word
     CONSTRAINT word_fk2 FOREIGN KEY (last_edit_id) REFERENCES Editor(editor_id)
 );
 
-CREATE TABLE Related_Words
+CREATE TABLE Related_Word
 (
-    related_words_id SERIAL CONSTRAINT related_words_pk PRIMARY KEY,
-    from_word INT CONSTRAINT related_words_nn1 NOT NULL,
-    to_word INT CONSTRAINT related_words_nn2 NOT NULL,
-    last_edit_id INT CONSTRAINT related_words_nn3 NOT NULL,
-    CONSTRAINT related_words_fk1 FOREIGN KEY (from_word) REFERENCES Word(word_id),
-    CONSTRAINT related_words_fk2 FOREIGN KEY (to_word) REFERENCES Word(word_id),
-    CONSTRAINT related_words_fk3 FOREIGN KEY (last_edit_id) REFERENCES Editor(editor_id)
+    related_words_id SERIAL CONSTRAINT related_word_pk PRIMARY KEY,
+    from_word INT CONSTRAINT related_word_nn1 NOT NULL,
+    to_word INT CONSTRAINT related_word_nn2 NOT NULL,
+    last_edit_id INT CONSTRAINT related_word_nn3 NOT NULL,
+    CONSTRAINT related_word_fk1 FOREIGN KEY (from_word) REFERENCES Word(word_id),
+    CONSTRAINT related_word_fk2 FOREIGN KEY (to_word) REFERENCES Word(word_id),
+    CONSTRAINT related_word_fk3 FOREIGN KEY (last_edit_id) REFERENCES Editor(editor_id)
 );
