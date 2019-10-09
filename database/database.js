@@ -18,7 +18,7 @@ module.exports = {
 	      }
       });
    }
-}
+};
 
 function pgConnectCallback(error) {
    if (error) {
