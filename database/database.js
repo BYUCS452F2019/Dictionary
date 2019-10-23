@@ -74,7 +74,7 @@ module.exports = {
          // give the query a unique name
          text: `INSERT INTO Word (name, lang_id, last_edit_id) 
                 VALUES ($1, $2, $3, $4);`,
-         values: [req.body.word, req.body.lang_id, req.body.editor_id], // todo: match values
+         values: [req.body.word, req.body.lang_id, req.body.edit_id], // todo: match values
       };
 
       client.query(addQuery, (error, result) => {
@@ -144,7 +144,7 @@ module.exports = {
          // give the query a unique name
          text: `INSERT INTO editor (name) 
                 VALUES ($1);`,
-         values: [req.body.edit_name], // todo: match values
+         values: [req.body.editor_name], // todo: match values
       };
 
       client.query(addQuery, (error, result) => {
@@ -166,8 +166,8 @@ module.exports = {
       const removeQuery = {
          // give the query a unique name
          text: `DELETE FROM editor
-                WHERE edit_id=$1;`,
-         values: [req.body.edit_id], // todo: match values
+                WHERE editor_id=$1;`,
+         values: [req.body.editor_id], // todo: match values
       };
 
       client.query(removeQuery, (error, result) => {
@@ -190,7 +190,7 @@ module.exports = {
          // give the query a unique name
          text: `INSERT INTO RelatedWord(from_word, to_word, last_edit_id)
                 VALUES ($1, $2, $3);`,
-         values: [req.body.from_word, req.body.to_word, req.body.edit_id], // todo: match values
+         values: [req.body.from_word, req.body.to_word, req.body.editor_id], // todo: match values
       };
 
       client.query(addQuery, (error, result) => {
@@ -213,7 +213,7 @@ module.exports = {
          // give the query a unique name
          text: `DELETE FROM related_word
                 WHERE related_words_id=$1;`,
-         values: [req.body.edit_id], // todo: match values
+         values: [req.body.editor_id], // todo: match values
       };
 
       client.query(removeQuery, (error, result) => {

@@ -7,7 +7,6 @@ app.set('port', PORT)
     .use(express.static('static'))
     .get('/pg', db.helloWorldQuery)
     .get('/searchWords', db.searchWords)
-    .get('/getRelatedWords', db.getRelatedWords)
     .get('/addWord', db.addWord)
     .get('/deleteWord', db.deleteWord)
     .get('/updateWord', db.updateWord)
@@ -15,8 +14,7 @@ app.set('port', PORT)
     .get('/deleteEditor', db.deleteEditor)
     .get('/addRelatedWord', db.addRelatedWord)
     .get('/deleteRelatedWord', db.deleteRelatedWord)
-
-
+    .get('/getRelatedWords', db.getRelatedWords)
 
 
     .listen(app.get('port'), () => {
