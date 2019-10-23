@@ -12,10 +12,10 @@ module.exports = {
             console.log("Error in query: ");
             console.log(error);
             res.json({"result":"error"})
-	      }
+         }
          else {
-	         res.json(result.rows);
-	      }
+            res.json(result.rows);
+         }
       });
    },
 
@@ -37,10 +37,10 @@ module.exports = {
       var vals = ['%' + query + '%'];
 
       client.query(sql, vals)
-         .then(result => {
-            res.json(result.rows);
-         })
-         .catch(e => console.error(e.stack));
+          .then(result => {
+             res.json(result.rows);
+          })
+          .catch(e => console.error(e.stack));
    },
 
    getRelatedWords: (req, res) => {
@@ -48,7 +48,7 @@ module.exports = {
       client.connect(pgConnectCallback);
 
       var queryData = url.parse(req.url, true);
-      var wordId = queryData.query.wordId;      
+      var wordId = queryData.query.wordId;
 
       // Returns the words related to the given id
       // Returns word_id, word, lang
@@ -60,11 +60,13 @@ module.exports = {
       var vals = [wordId];
 
       client.query(sql, vals)
-         .then(result => {
-            res.json(result.rows);
-         })
-         .catch(e => console.error(e.stack));
-   }
+          .then(result => {
+             res.json(result.rows);
+          })
+          .catch(e => console.error(e.stack));
+   },
+
+
 };
 
 function pgConnectCallback(error) {
