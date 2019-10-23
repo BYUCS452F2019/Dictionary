@@ -145,7 +145,7 @@ module.exports = {
          // give the query a unique name
          text: `INSERT INTO editor (name) 
                 VALUES ($1);"`,
-         values: [req.body.editor_name], // todo: match values
+         values: [req.body.edit_name], // todo: match values
       };
 
       client.query(addQuery, (error, result) => {
@@ -183,56 +183,7 @@ module.exports = {
       });
    },
 
-
-   updateEditor: (req, res) => {
-      var client = new pg.Client(connectionString);
-      client.connect(pgConnectCallback);
-
-      const updateQuery = {
-         // give the query a unique name
-         text: `UPDATE editor
-                SET definition = $2, editor_id = $3 
-                WHERE employee_id = $1;"`,
-         values: [req.body.edit_id, req.body.def, req.body.editor_id], // todo: match values
-      };
-
-      client.query(updateQuery, (error, result) => {
-         if (error) {
-            console.log("Error in query: ");
-            console.log(error);
-            res.json({"result":"error"})
-         }
-         else {
-            res.json(result);
-         }
-      });
-   },
-
-
-   // search: (req, res) => {
-   //    var client = new pg.Client(connectionString);
-   //    client.connect(pgConnectCallback);
-   //
-   //    const addQuery = {
-   //       // give the query a unique name
-   //       text: `INSERT INTO Word (word, definition, lang_id, last_edit_id)
-   //              VALUES ($1, $2, $3, $4);"`,
-   //       values: [req.body.word, req.body.def, req.body.lang_id, req.body.editor_id], // todo: match values
-   //    };
-   //
-   //    client.query(addQuery, (error, result) => {
-   //       if (error) {
-   //          console.log("Error in query: ");
-   //          console.log(error);
-   //          res.json({"result":"error"})
-   //       }
-   //       else {
-   //          res.json(result);
-   //       }
-   //    });
-   // },
-
-   // getTrans: (req, res) => {
+   // addRelatedWord: (req, res) => {
    //    var client = new pg.Client(connectionString);
    //    client.connect(pgConnectCallback);
    //
