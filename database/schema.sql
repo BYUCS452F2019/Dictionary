@@ -1,7 +1,13 @@
+-- Completely destroy database and build it up again
+
 DROP TABLE Related_Word;
 DROP TABLE Word;
 DROP TABLE Editor;
 DROP TABLE Language;
+
+--------------------------------------------------------------
+--------------------- SCHEMA DEFINITION ----------------------
+--------------------------------------------------------------
 
 CREATE TABLE Language
 (
@@ -22,10 +28,12 @@ CREATE TABLE Word
     word_id SERIAL CONSTRAINT word_pk PRIMARY KEY,
     word VARCHAR(100) CONSTRAINT word_nn1 NOT NULL,
     definition VARCHAR(8000),
-    lang_id INT,
+    lang_id INT NOT NULL,
+    created_by_id INT NOT NULL,
     last_edit_id INT,
     CONSTRAINT word_fk1 FOREIGN KEY (lang_id) REFERENCES Language(lang_id),
-    CONSTRAINT word_fk2 FOREIGN KEY (last_edit_id) REFERENCES Editor(editor_id)
+    CONSTRAINT word_fk2 FOREIGN KEY (created_by_id) REFERENCES Editor(editor_id),
+    CONSTRAINT word_fk3 FOREIGN KEY (last_edit_id) REFERENCES Editor(editor_id)
 );
 
 CREATE TABLE Related_Word
@@ -37,4 +45,186 @@ CREATE TABLE Related_Word
     CONSTRAINT related_word_fk1 FOREIGN KEY (from_word) REFERENCES Word(word_id),
     CONSTRAINT related_word_fk2 FOREIGN KEY (to_word) REFERENCES Word(word_id),
     CONSTRAINT related_word_fk3 FOREIGN KEY (last_edit_id) REFERENCES Editor(editor_id)
+);
+
+--------------------------------------------------------------
+--------------------------- EDITOR ---------------------------
+--------------------------------------------------------------
+
+INSERT INTO Editor VALUES
+(
+    DEFAULT,
+    'Multi-Lingual Dictionary'
+);
+
+--------------------------------------------------------------
+------------------------- LANGUAGES --------------------------
+--------------------------------------------------------------
+
+INSERT INTO Language VALUES
+(
+    DEFAULT,
+    'English'
+);
+
+INSERT INTO Language VALUES
+(
+    DEFAULT,
+    'Spanish'
+);
+
+INSERT INTO Language VALUES
+(
+    DEFAULT,
+    'Portuguese'
+);
+
+INSERT INTO Language VALUES
+(
+    DEFAULT,
+    'French'
+);
+
+--------------------------------------------------------------
+---------------------------- WORDS ---------------------------
+--------------------------------------------------------------
+
+INSERT INTO Word VALUES
+(
+    DEFAULT,
+    'hello',
+    'Used to express a greeting, answer a telephone, or attract attention',
+    (Select lang_id FROM Language WHERE lang = 'English'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
+);
+
+INSERT INTO Word VALUES
+(
+    DEFAULT,
+    'bonjour',
+    'Used to express a greeting, answer a telephone, or attract attention',
+    (Select lang_id FROM Language WHERE lang = 'French'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
+);
+
+INSERT INTO Word VALUES
+(
+    DEFAULT,
+    'hola',
+    'Used to express a greeting, answer a telephone, or attract attention',
+    (Select lang_id FROM Language WHERE lang = 'Spanish'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
+);
+
+INSERT INTO Word VALUES
+(
+    DEFAULT,
+    'olá',
+    'Used to express a greeting, answer a telephone, or attract attention',
+    (Select lang_id FROM Language WHERE lang = 'Portuguese'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
+);
+
+--------------------------------------------------------------
+--------------------- RELATED WORDS --------------------------
+--------------------------------------------------------------
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    1,
+    2,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    1,
+    3,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    1,
+    4,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    2,
+    1,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    2,
+    3,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    2,
+    4,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    3,
+    1,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    3,
+    2,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    3,
+    4,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    4,
+    1,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    4,
+    2,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
+);
+
+INSERT INTO Related_Word VALUES
+(
+    DEFAULT,
+    4,
+    3,
+    (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')   
 );
