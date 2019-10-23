@@ -29,7 +29,7 @@ module.exports = {
          query = '';
       }
 
-      var sql = `SELECT word_id, word, definition, lang 
+      var sql = `SELECT word_id, word, lang 
                  FROM Word w INNER JOIN Language l
                  ON w.lang_id = l.lang_id
                  WHERE word LIKE LOWER($1)
@@ -72,9 +72,9 @@ module.exports = {
 
       const addQuery = {
          // give the query a unique name
-         text: `INSERT INTO Word (name, definition, lang_id, last_edit_id) 
+         text: `INSERT INTO Word (name, lang_id, last_edit_id) 
                 VALUES ($1, $2, $3, $4);`,
-         values: [req.body.word, req.body.def, req.body.lang_id, req.body.editor_id], // todo: match values
+         values: [req.body.word, req.body.lang_id, req.body.editor_id], // todo: match values
       };
 
       client.query(addQuery, (error, result) => {
@@ -119,9 +119,9 @@ module.exports = {
       const updateQuery = {
          // give the query a unique name
          text: `UPDATE word
-                SET definition = $2, editor_id = $3 
+                SET name = $2, editor_id = $3 
                 WHERE employee_id = $1;`,
-         values: [req.body.word_id, req.body.def, req.body.editor_id], // todo: match values
+         values: [req.body.word_id, req.body.word, req.body.editor_id], // todo: match values
       };
 
       client.query(updateQuery, (error, result) => {
@@ -190,7 +190,7 @@ module.exports = {
          // give the query a unique name
          text: `INSERT INTO RelatedWord(from_word, to_word, last_edit_id)
                 VALUES ($1, $2, $3);`,
-         values: [req.body.from_word, req.body.to_def, req.body.edit_id], // todo: match values
+         values: [req.body.from_word, req.body.to_word, req.body.edit_id], // todo: match values
       };
 
       client.query(addQuery, (error, result) => {
@@ -228,77 +228,6 @@ module.exports = {
       });
    },
 
-   // TranslateWord: (req, res) => {
-   //    var client = new pg.Client(connectionString);
-   //    client.connect(pgConnectCallback);
-   //
-   //    const addQuery = {
-   //       // give the query a unique name
-   //       text: `INSERT INTO Word (word, definition, lang_id, last_edit_id)
-   //              VALUES ($1, $2, $3, $4);"`,
-   //       values: [req.body.word, req.body.def, req.body.lang_id, req.body.editor_id], // todo: match values
-   //    };
-   //
-   //    client.query(addQuery, (error, result) => {
-   //       if (error) {
-   //          console.log("Error in query: ");
-   //          console.log(error);
-   //          res.json({"result":"error"})
-   //       }
-   //       else {
-   //          res.json(result);
-   //       }
-   //    });
-   // },
-   //
-   // removeRW: (req, res) => {
-   //    var client = new pg.Client(connectionString);
-   //    client.connect(pgConnectCallback);
-   //
-   //    const addQuery = {
-   //       // give the query a unique name
-   //       text: `INSERT INTO Word (word, definition, lang_id, last_edit_id)
-   //              VALUES ($1, $2, $3, $4);"`,
-   //       values: [req.body.word, req.body.def, req.body.lang_id, req.body.editor_id], // todo: match values
-   //    };
-   //
-   //    client.query(addQuery, (error, result) => {
-   //       if (error) {
-   //          console.log("Error in query: ");
-   //          console.log(error);
-   //          res.json({"result":"error"})
-   //       }
-   //       else {
-   //          res.json(result);
-   //       }
-   //    });
-   // },
-
-
-
-   // getEditor: (req, res) => {
-   //    var client = new pg.Client(connectionString);
-   //    client.connect(pgConnectCallback);
-   //
-   //    const addQuery = {
-   //       // give the query a unique name
-   //       text: `FROM word
-   //              SELECT *
-   //              VALUES ($1, $2, $3, $4);"`,
-   //       values: [req.body.word, req.body.def, req.body.lang_id, req.body.editor_id], // todo: match values
-   //    };
-   //
-   //    client.query(addQuery, (error, result) => {
-   //       if (error) {
-   //          console.log("Error in query: ");
-   //          console.log(error);
-   //          res.json({"result":"error"})
-   //       }
-   //       else {
-   //          res.json(result);
-   //       }
-   //    });
-   // },
 };
 
 function pgConnectCallback(error) {
