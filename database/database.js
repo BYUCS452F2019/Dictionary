@@ -11,13 +11,16 @@ module.exports = {
       }
 
       const statement = {
-         text: `SELECT word_id, word, lang 
-                 FROM Word w INNER JOIN Language l
-                 ON w.lang_id = l.lang_id
-                 WHERE word LIKE LOWER($1)
-                 ORDER BY word`,
+         text: `SELECT w.word_id, w.word, l2.lang, json_agg(json_build_object('word', w2.word, 'lang', l.lang)) AS "related_words"
+                FROM Word w INNER JOIN Related_Word rw
+                ON w.word_id = rw.from_word INNER JOIN word w2
+                ON rw.to_word = w2.word_id INNER JOIN language l
+                ON w2.lang_id = l.lang_id INNER JOIN language l2
+                ON w.lang_id = l2.lang_id
+                WHERE w.word LIKE $1
+                GROUP BY w.word_id, w.word, l2.lang
+                LIMIT 100;`,
          values: ['%' + query + '%']
-
       }
 
       queryJsonReturn(res, statement);
