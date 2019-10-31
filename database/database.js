@@ -1,12 +1,6 @@
-const { Pool } = require('pg');
+const pg = require('pg');
 const connectionString = process.env.DATABASE_URL || "postgres://postgres:admin@localhost:5432/postgres";
-const pool = new Pool({connectionString: connectionString});
 const url = require('url');
-
-pool.on('error', (err, client) => {
-   console.error('Unexpected error on idle client', err)
-   process.exit(-1)
-})
 
 module.exports = {
    searchWords: (req, res) => {
@@ -128,17 +122,26 @@ module.exports = {
 };
 
 function queryJsonReturn(res, query) {
-   pool.connect()
-      .then(client => {
-         return client
-            .query(query)
-            .then(result => {
-               client.release();
-               res.json(result.rows);
-            })
-            .catch(e => {
-               client.release();
-               console.log(e.stack);
-            });
+   var client = new pg.Client(connectionString);
+   client.connect(pgConnectCallback);
+
+   client.query(query)
+      .then(result => {
+         res.json(result.rows);
+         client.end();
+      })
+      .catch(e => {
+         console.error(e.stack)
+         client.end();
       });
+}
+
+function pgConnectCallback(error) {
+   if (error) {
+      console.log("Error connection to postgres: ");
+      console.log(error);
+   }
+   else {
+      console.log("Successfully connected to postgres");
+   }
 }
