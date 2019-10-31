@@ -15,15 +15,24 @@ function showWords() {
 
                 var html = `<div class="card-deck">`;
 
+                console.log(result);
+
                 for (var i = 0; i < Object.keys(result).length; ++i) {
+
+                    var relatedWords = result[i].related_words;
+                    var relatedText = '<ul>';
+                    for (var j = 0; j < Object.keys(relatedWords).length; ++j) {
+                        relatedText += '<li>' + relatedWords[j].word + ' (' + relatedWords[j].lang + ')' + '</li>';
+                    }
+                    relatedText += '</ul>';
 
                     html += `<div class="card">
                                <div class="card-body">
                                  <h5 class="card-title">` + result[i].word + `</h5>
-                                 <p class="card-text">Language: ` + result[i].lang + `</p>
+                                 <p class="card-text">Language: ` + result[i].lang + `<br><br>
+                                  Related Words: ` + relatedText + `</p>
                                </div>
-                             </div>
-                             `;
+                             </div>`;
                 }
 
                 html += `</div>`;
