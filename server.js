@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.set('port', PORT)
+<<<<<<< HEAD
     .use(express.static('static'))
     .get('/pg', db.helloWorldQuery)
     .get('/searchWords', db.searchWords)
@@ -20,3 +21,11 @@ app.set('port', PORT)
     .listen(app.get('port'), () => {
         console.log('Listening on port: ' + app.get('port'));
     });
+=======
+   .use(express.static('static'))
+   .get('/searchWords', db.searchWords)
+   .get('/getRelatedWords', db.getRelatedWords)
+   .listen(app.get('port'), () => {
+       console.log('Listening on port: ' + app.get('port'));
+   });
+>>>>>>> Fixed errors

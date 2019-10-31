@@ -27,7 +27,6 @@ CREATE TABLE Word
 (
     word_id SERIAL CONSTRAINT word_pk PRIMARY KEY,
     word VARCHAR(100) CONSTRAINT word_nn1 NOT NULL,
-    definition VARCHAR(8000),
     lang_id INT NOT NULL,
     created_by_id INT NOT NULL,
     last_edit_id INT,
@@ -93,7 +92,6 @@ INSERT INTO Word VALUES
 (
     DEFAULT,
     'hello',
-    'Used to express a greeting, answer a telephone, or attract attention',
     (Select lang_id FROM Language WHERE lang = 'English'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
@@ -103,7 +101,6 @@ INSERT INTO Word VALUES
 (
     DEFAULT,
     'bonjour',
-    'Used to express a greeting, answer a telephone, or attract attention',
     (Select lang_id FROM Language WHERE lang = 'French'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
@@ -113,7 +110,6 @@ INSERT INTO Word VALUES
 (
     DEFAULT,
     'hola',
-    'Used to express a greeting, answer a telephone, or attract attention',
     (Select lang_id FROM Language WHERE lang = 'Spanish'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
@@ -123,7 +119,6 @@ INSERT INTO Word VALUES
 (
     DEFAULT,
     'olá',
-    'Used to express a greeting, answer a telephone, or attract attention',
     (Select lang_id FROM Language WHERE lang = 'Portuguese'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary'),
     (Select editor_id FROM Editor WHERE name = 'Multi-Lingual Dictionary')
