@@ -13,26 +13,36 @@ function showWords() {
             if (xmlhttp.status == 200) {
                 var result = JSON.parse(xmlhttp.responseText);
 
-                var html = "";
+                var html = `<div class="card-deck">`;
 
                 for (var i = 0; i < Object.keys(result).length; ++i) {
 
                     html += `<div class="card">
-                            <div class="card-header">
-                                <a onclick="showRelatedWords(` + result[i].word_id + `)"data-toggle="collapse" href="#collapse` + result[i].word_id + `">
-                                ` + result[i].word + `
-                                </a>
-                            </div>
-                            <div id="collapse` + result[i].word_id + `" class="collapse">
-                                <div class="card-block">
-                                    Definition: ` + result[i].definition + `<br>
-                                    Language: ` + result[i].lang + `<br>
-                                    <div id="wordBlock` + result[i].word_id + `">
-                                </div>
-                            </div>
-                        </div>
-                        `;
+                               <div class="card-body">
+                                 <h5 class="card-title">` + result[i].word + `</h5>
+                                 <p class="card-text">Language: ` + result[i].lang + `</p>
+                               </div>
+                             </div>
+                             `;
+
+                    // html += `<div class="card">
+                    //         <div class="card-header">
+                    //             <a onclick="showRelatedWords(` + result[i].word_id + `)"data-toggle="collapse" href="#collapse` + result[i].word_id + `">
+                    //             ` + result[i].word + `
+                    //             </a>
+                    //         </div>
+                    //         <div id="collapse` + result[i].word_id + `" class="collapse">
+                    //             <div class="card-block">
+                    //                 Definition: ` + result[i].definition + `<br>
+                    //                 Language: ` + result[i].lang + `<br>
+                    //                 <div id="wordBlock` + result[i].word_id + `">
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    //     `;
                 }
+
+                html += `</div>`;
 
                 document.getElementById("searchResults").innerHTML = html;
                 console.log("Success")
