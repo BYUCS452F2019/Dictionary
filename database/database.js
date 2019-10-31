@@ -58,13 +58,8 @@ module.exports = {
       const addQuery = {
          // give the query a unique name
          text: `INSERT INTO Word (name, lang_id, last_edit_id) 
-<<<<<<< HEAD
-                VALUES ($1, $2, $3, $4);`,
-         values: [req.body.word, req.body.lang_id, req.body.edit_id], // todo: match values
-=======
                 VALUES ($1, $2, $3);"`,
          values: [req.body.word, req.body.lang_id, req.body.editor_id], // todo: match values
->>>>>>> Fixed errors
       };
 
       client.query(addQuery, (error, result) => {
@@ -109,15 +104,9 @@ module.exports = {
       const updateQuery = {
          // give the query a unique name
          text: `UPDATE word
-<<<<<<< HEAD
                 SET name = $2, editor_id = $3 
                 WHERE employee_id = $1;`,
          values: [req.body.word_id, req.body.word, req.body.editor_id], // todo: match values
-=======
-                editor_id = $2 
-                WHERE employee_id = $1;"`,
-         values: [req.body.word_id, req.body.editor_id], // todo: match values
->>>>>>> Fixed errors
       };
 
       client.query(updateQuery, (error, result) => {
@@ -184,16 +173,9 @@ module.exports = {
 
       const addQuery = {
          // give the query a unique name
-<<<<<<< HEAD
          text: `INSERT INTO RelatedWord(from_word, to_word, last_edit_id)
                 VALUES ($1, $2, $3);`,
          values: [req.body.from_word, req.body.to_word, req.body.editor_id], // todo: match values
-=======
-         text: `UPDATE editor
-                editor_id = $2 
-                WHERE employee_id = $1;"`,
-         values: [req.body.edit_id, req.body.editor_id], // todo: match values
->>>>>>> Fixed errors
       };
 
       client.query(addQuery, (error, result) => {
