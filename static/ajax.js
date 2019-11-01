@@ -29,7 +29,7 @@ function showWords() {
                     }
                     relatedText += '</ul>';
 
-                    html += `<div class="col-sm-3"><div class="card">
+                    html += `<div class="col-lg-4"><div class="card">
                                <div class="card-body">
                                  <h5 class="card-title">` + result[i].word + `</h5>
                                  <p class="card-text">Language: ` + result[i].lang + `<br><br>
