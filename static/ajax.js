@@ -29,13 +29,13 @@ function showWords() {
                     }
                     relatedText += '</ul>';
 
-                    html += `<div class="card">
+                    html += `<div class="col-sm-3"><div class="card">
                                <div class="card-body">
                                  <h5 class="card-title">` + result[i].word + `</h5>
                                  <p class="card-text">Language: ` + result[i].lang + `<br><br>
                                   Related Words: ` + relatedText + `</p>
                                </div>
-                             </div>`;
+                             </div></div>`;
 
                     if (i % 5 == 0) {
                         html += '</div>'
