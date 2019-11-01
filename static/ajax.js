@@ -18,6 +18,9 @@ function showWords() {
                 console.log(result);
 
                 for (var i = 0; i < Object.keys(result).length; ++i) {
+                    if (i % 5 == 0) {
+                        html += '<div class="row">'
+                    }
 
                     var relatedWords = result[i].related_words;
                     var relatedText = '<ul>';
@@ -33,6 +36,10 @@ function showWords() {
                                   Related Words: ` + relatedText + `</p>
                                </div>
                              </div>`;
+
+                    if (i % 5 == 0) {
+                        html += '</div>'
+                    }
                 }
 
                 html += `</div>`;
