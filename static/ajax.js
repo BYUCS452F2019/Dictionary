@@ -13,7 +13,7 @@ function showWords() {
             if (xmlhttp.status == 200) {
                 var result = JSON.parse(xmlhttp.responseText);
 
-                var html = `<div class="card-deck">`;
+                var html = ``;//<div class="card-deck">`;
 
                 console.log(result);
 
@@ -29,20 +29,20 @@ function showWords() {
                     }
                     relatedText += '</ul>';
 
-                    html += `<div class="card">
+                    html += `<div class="col-md-4"><div class="card">
                                <div class="card-body">
                                  <h5 class="card-title">` + result[i].word + `</h5>
                                  <p class="card-text">Language: ` + result[i].lang + `<br><br>
                                   Related Words: ` + relatedText + `</p>
                                </div>
-                             </div>`;
+                             </div></div>`;
 
                     if (i % 5 == 0) {
                         html += '</div>'
                     }
                 }
 
-                html += `</div>`;
+                html += ``;//</div>`;
 
                 document.getElementById("searchResults").innerHTML = html;
                 console.log("Success")
