@@ -13,7 +13,7 @@ function showWords() {
             if (xmlhttp.status == 200) {
                 var result = JSON.parse(xmlhttp.responseText);
 
-                var html = `<div class="container">`;//<div class="card-deck">`;
+                var html = `<div class="card-deck">`;
 
                 console.log(result);
 
