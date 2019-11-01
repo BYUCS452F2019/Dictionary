@@ -18,7 +18,7 @@ function showWords() {
                 console.log(result);
 
                 for (var i = 0; i < Object.keys(result).length; ++i) {
-                    if (i % 5 == 0) {
+                    if (i % 4 == 0) {
                         html += '<div class="row">'
                     }
 
@@ -29,13 +29,13 @@ function showWords() {
                     }
                     relatedText += '</ul>';
 
-                    html += `<div class="col-lg-4"><div class="card">
+                    html += `<div class="card">
                                <div class="card-body">
                                  <h5 class="card-title">` + result[i].word + `</h5>
                                  <p class="card-text">Language: ` + result[i].lang + `<br><br>
                                   Related Words: ` + relatedText + `</p>
                                </div>
-                             </div></div>`;
+                             </div>`;
 
                     if (i % 5 == 0) {
                         html += '</div>'
