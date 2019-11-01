@@ -37,7 +37,7 @@ function showWords() {
                                </div>
                              </div></div>`;
 
-                    if (i % 5 == 0) {
+                    if (i % 5 == 0 || i == Object.keys(result).length) {
                         html += '</div>'
                     }
                 }
