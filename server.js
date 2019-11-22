@@ -10,11 +10,8 @@ app.set('port', PORT)
     .get('/addWord', db.addWord)
     .get('/deleteWord', db.deleteWord)
     .get('/updateWord', db.updateWord)
-    .get('/addEditor', db.addEditor)
-    .get('/deleteEditor', db.deleteEditor)
     .get('/addRelatedWord', db.addRelatedWord)
     .get('/deleteRelatedWord', db.deleteRelatedWord)
-    .get('/getRelatedWords', db.getRelatedWords)
 
     .listen(app.get('port'), () => {
         console.log('Listening on port: ' + app.get('port'));
