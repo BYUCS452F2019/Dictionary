@@ -7,11 +7,11 @@ const PORT = process.env.PORT || 5000;
 app.set('port', PORT)
     .use(express.static('static'))
     .get('/searchWords', db.searchWords)
-    .get('/addWord', db.addWord)
-    .get('/deleteWord', db.deleteWord)
-    .get('/updateWord', db.updateWord)
-    .get('/addRelatedWord', db.addRelatedWord)
-    .get('/deleteRelatedWord', db.deleteRelatedWord)
+    .post('/addWord', db.addWord)
+    .delete('/deleteWord', db.deleteWord)
+    .put('/updateWord', db.updateWord)
+    .post('/addRelatedWord', db.addRelatedWord)
+    .delete('/deleteRelatedWord', db.deleteRelatedWord)
 
     .listen(app.get('port'), () => {
         console.log('Listening on port: ' + app.get('port'));
