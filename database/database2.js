@@ -32,7 +32,9 @@ module.exports = {
         const word = req.body.word;
         const lang = req.body.language;
 
-        const text = `CREATE (n:word {name: {newWord}, language: {newLang}})`;
+        const text = `CREATE (n:word {name: {newWord}, language: {newLang}})
+                      CREATE (n)-[:RELATED]->(n)`;
+
         const namedParams = {
             newWord: word,
             newLang: lang
