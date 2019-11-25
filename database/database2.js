@@ -93,8 +93,9 @@ module.exports = {
         const fromWord = req.body.from_word;
         const toWord = req.body.to_word;
 
-        const text = `MATCH (n:word {name: {from_word}})-[r:RELATED]->(n2:word {name: {to_word}})
-                      DELETE r`;
+        const text = `MATCH (n:word {name: {from_word}})-[r:RELATED]->(n2:word {name: {to_word}}),
+                            (n3:word {name: {to_word}})-[r2:RELATED]->(n4:word {name: {from_word}})
+                      DELETE r, r2`;
         const namedParams = {
             from_word: fromWord,
             to_word: toWord
