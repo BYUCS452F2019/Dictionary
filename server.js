@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 5000;
 
 app.set('port', PORT)
     .use(express.static('static'))
+    .use(express.json())
+    .use(express.urlencoded({extended:true}))
     .get('/searchWords', db.searchWords)
     .post('/addWord', db.addWord)
     .delete('/deleteWord', db.deleteWord)
