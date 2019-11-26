@@ -20,7 +20,8 @@ module.exports = {
 
         const text = `MATCH (query:word)-[:RELATED]->(result:word)
                 WHERE query.name STARTS WITH {q}
-                RETURN query, result`;
+                RETURN query, result
+                ORDER BY query.name, result.name`;
         const namedParams = {
             q: query
         };

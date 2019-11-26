@@ -38,20 +38,83 @@
         </div>
     </nav>
 
-    <div class="margin"> <!-- Beginning of Body Style -->
+    <div class="margin">
+        <!-- Beginning of Body Style -->
 
-    <!-- Search Bar -->
-    <input id="searchQuery" type="text" placeholder="Search: any word, any language" class="form-control input-sm" onkeyup="showWords()">
+        <!-- Search Bar -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Search</span>
+            </div>
+            <input id="searchQuery" type="text" placeholder="any word, any language" class="form-control"
+                onkeyup="showWords()">
+            <div class="input-group-append">
+                <button type="button" onclick="$('#addWord').modal('show')" class="form-control btn btn-success">Add
+                    Word</button>
+            </div>
+        </div>
 
-    <!-- Search Results go within this div -->
-    
-    <div style="margin-top: 10px" id="searchResults"></div>
 
+        <!-- Search Results go within this div -->
+
+        <div style="margin-top: 10px" id="searchResults"></div>
 
     </div> <!-- End of Body Style -->
 
     <!-- Populate results so that there is something on the page to begin with -->
     <script>showWords()</script>
 </body>
+
+<!-- AddWord Modal -->
+<div class="modal fade" id="addWord" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Word</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="wordName" class="form-control" placeholder="Name">
+                <input type="text" id="wordLanguage" class="form-control" style="margin-top:5px" placeholder="Language">
+                <div id="addWordError" class="style=color:red"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="addWord()">Add</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Add Related Word Modal -->
+<div class="modal fade" id="addRelatedWord" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Related Word</h5>
+                <input id="relatedFromWord" hidden></input>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Search Bar -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Search</span>
+                    </div>
+                    <input id="searchQueryRelated" type="text" placeholder="any word, any language" class="form-control"
+                        onkeyup="showWordsAddRelated()">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+                <div style="margin-top: 10px" id="searchResultsRelated"></div>
+                <div id="addRelatedWordError" class="style=color:red"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </html>
