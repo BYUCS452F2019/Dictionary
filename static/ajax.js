@@ -13,7 +13,7 @@ function showWords() {
             if (xmlhttp.status == 200) {
                 var result = JSON.parse(xmlhttp.responseText);
 
-                var html = `<div class="card-deck">`;
+                var html = ``;
 
                 console.log(result);
 
@@ -21,6 +21,8 @@ function showWords() {
                 var currentLanguage;
                 var relatedText = '';
                 var wordsExist = false;
+
+                var count = 0;
 
                 for (var i = 0; i < Object.keys(result).length; ++i) {
 
@@ -43,14 +45,23 @@ function showWords() {
 
                             console.log("related=" + related);
 
-                            html += `<div class="card">
+                            if (count % 4 === 0) {
+                                if (count != 0) {
+                                    html += '</div>'
+                                }
+
+                                html += '<div class="card-deck" style="margin-top:10px">';
+                            }
+
+                            html += `
+                                      <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">` + currentWord + `</h5>
-                                            <p class="card-text">Language: ` + currentLanguage +
-                                related + `</p>
+                                            <p class="card-text">Language: ` + currentLanguage + related + `</p>
                                         </div>
-                                     </div>`;
+                                      </div>`;
 
+                            count++;
                             relatedText = '';
                         }
 
@@ -81,16 +92,29 @@ function showWords() {
 
                     console.log("related=" + related);
 
-                    html += `<div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">` + currentWord + `</h5>
-                                    <p class="card-text">Language: ` + currentLanguage +
-                                    related + `</p>
-                                </div>
-                             </div>`;
+                    if (count % 4 === 0) {
+
+                        if (count != 0) {
+                            html += '</div>';
+                        }
+                        html += '<div class="card-deck">';
+                    }
+
+                    html += `
+                                      <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">` + currentWord + `</h5>
+                                            <p class="card-text">Language: ` + currentLanguage + related + `</p>
+                                        </div>
+                                      </div><div>`;
+
+                    count++;
+                    relatedText = '';
                 }
 
-                html += `</div>`;
+                
+
+                html += ``;
 
                 document.getElementById("searchResults").innerHTML = html;
                 console.log("Success")
