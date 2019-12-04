@@ -206,7 +206,7 @@ function showWordsAddRelated() {
                                 `</p>
                                         </div>
                                         <div class="card-footer">
-                                            <a href=# class="btn btn-sm btn-success">Add related word</a>
+                                            <a href=# class="btn btn-sm btn-success" onclick="addRelatedWord('`+ currentWord + `')">Select related word</a>
                                         </div>
                                       </div>`;
 
